@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Dora 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #fff0f5, #fce1eb, #fff8fb);
+  color: #754052;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: floatUp 8s linear infinite;
+  opacity: .6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  to { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
+}
+
+.music {
+  position: fixed;
+  right: 12px;
+  top: 12px;
+  z-index: 10;
+  background: #fff9fc;
+  border: 1px solid #f3c5d5;
+  border-radius: 30px;
+  padding: 10px 14px;
+  color: #a34e70;
+  box-shadow: 0 4px 15px #b76a7b20;
+}
+
+.music button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 75px 20px 35px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: appear .7s ease;
+}
+
+.page.active { display: flex; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.small {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font: 11px Arial, sans-serif;
+  color: #bc7891;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: normal;
+  margin-bottom: 18px;
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: 27px;
+  font-weight: normal;
+  margin-bottom: 18px;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.9;
+  max-width: 520px;
+}
+
+.doodle {
+  font-size: 57px;
+  margin: 20px 0;
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  50% { transform: scale(1.08); }
+}
+
+button.next {
+  border: none;
+  padding: 13px 23px;
+  margin-top: 28px;
+  background: #c96e91;
+  color: white;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #c96e9130;
+}
+
+button.next:active { transform: scale(.96); }
+
+.photo {
+  width: min(82vw, 330px);
+  height: 350px;
+  object-fit: cover;
+  border-radius: 18px;
+  padding: 7px;
+  background: white;
+  box-shadow: 0 10px 35px #a9517020;
+  margin: 8px 0 24px;
+  transform: rotate(-1deg);
+}
+
+.photo-caption {
+  font-size: 17px;
+  max-width: 350px;
+}
+
+.counter {
+  margin-top: 15px;
+  font: 12px Arial, sans-serif;
+  letter-spacing: 2px;
+  color: #bd8498;
+}
+
+.letter {
+  background: #fffafc;
+  padding: 28px 23px;
+  border: 1px solid #f2cfda;
+  border-radius: 8px;
+  width: min(100%, 520px);
+  text-align: left;
+  box-shadow: 0 10px 30px #9b536a13;
+}
+
+.letter p {
+  font-size: 16px;
+  line-height: 1.95;
+  margin-bottom: 15px;
+}
+
+.signature {
+  text-align: right;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.footer {
+  font: 11px Arial, sans-serif;
+  letter-spacing: 2px;
+  margin-top: 28px;
+  color: #bd8498;
+}
+
+@media(max-width:380px) {
+  .photo { height: 290px; }
+  p { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="music">
+  <button id="musicBtn" onclick="toggleMusic()">♫ Play our song</button>
+</div>
+
+<audio id="song" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- COVER -->
+<section class="page active" id="page0">
+  <div class="small">A little something for someone special</div>
+  <div class="doodle">💌</div>
+  <h1>Hey, Dora.</h1>
+  <p>
+    I've got something to tell you.<br>
+    Something I hope you'll remember,<br>
+    even on the days you forget how special you are.
+  </p>
+  <button class="next" onclick="goTo(1)">Open your little letter ♡</button>
+  <div class="footer">MADE WITH LOVE, JUST FOR YOU</div>
+</section>
+
+<!-- INTRO -->
+<section class="page" id="page1">
+  <div class="small">Before the memories</div>
+  <h1>To my favourite human 💗</h1>
+  <div class="doodle">🧸🌷</div>
+  <p>
+    Divya, aka my Dora…<br>
+    If someone had told me that a person could enter my life
+    and slowly become such a comforting part of it,
+    I probably wouldn't have believed them.
+  </p>
+  <p style="margin-top:12px">
+    But then, you happened.
+  </p>
+  <button class="next" onclick="goTo(2)">Let's look at our memories →</button>
+</section>
+
+<!-- PHOTO 1 -->
+<section class="page" id="page2">
+  <div class="small">Memory 01 · The beginning</div>
+  <h2>Somehow, life brought you here.</h2>
+  <img class="photo" src="pic1.jpg" alt="Our first memory"
+       onerror="this.src='https://placehold.co/400x500/fff0f5/c96e91?text=Our+Memory+1'">
+  <p class="photo-caption">
+    Out of all the people I could've met, I'm grateful that our paths crossed. ♡
+  </p>
+  <div class="counter">01 / 07</div>
+  <button class="next" onclick="goTo(3)">Next memory →</button>
+</section>
+
+<!-- PHOTO 2 -->
+<section class="page" id="page3">
+  <div class="small">Memory 02 · A little happiness</div>
+  <h2>You made ordinary days matter.</h2>
+  <img class="photo" src="pic2.jpg" alt="A happy memory"
+       onerror="this.src='https://placehold.co/400x500/fff0f5/c96e91?text=Our+Memory+2'">
+  <p class="photo-caption">
+    Sometimes, it's not the big moments. It's the little conversations and silly things that stay with us. 🫶🏻
+  </p>
+  <div class="counter">02 / 07</div>
+  <button class="next" onclick="goTo(4)">Next memory →</button>
+</section>
+
+<!-- PHOTO 3 -->
+<section class="page" id="page4">
+  <div class="small">Memory 03 · The laughter</div>
+  <h2>Thank you for tolerating my bakwaas. 😭</h2>
+  <img class="photo" src="pic3.jpg" alt="A funny memory"
+       onerror="this.src='https://placehold.co/400x500/fff0f5/c96e91?text=Our+Memory+3'">
+  <p class="photo-caption">
+    Thank you for laughing with me, listening to my nonsense, and making even the most random conversations feel worth having.
+  </p>
+  <div class="counter">03 / 07</div>
+  <button class="next" onclick="goTo(5)">Next memory →</button>
+</section>
+
+<!-- PHOTO 4 -->
+<section class="page" id="page5">
+  <div class="small">Memory 04 · The safe place</div>
+  <h2>A little peace in a loud world.</h2>
+  <img class="photo" src="pic4.jpg" alt="A comforting memory"
+       onerror="this.src='https://placehold.co/400x500/fff0f5/c96e91?text=Our+Memory+4'">
+  <p class="photo-caption">
+    Thank you for being someone I can talk to, someone who makes things feel a little lighter. I hope you know you can find that same comfort in me, too. 🌷
+  </p>
+  <div class="counter">04 / 07</div>
+  <button class="next" onclick="goTo(6)">Next memory →</button>
+</section>
+
+<!-- PHOTO 5 -->
+<section class="page" id="page6">
+  <div class="small">Memory 05 · Growing</div>
+  <h2>You changed something in me.</h2>
+  <img class="photo" src="pic5.jpg" alt="A memory of growth"
+       onerror="this.src='https://placehold.co/400x500/fff0f5/c96e91?text=Our+Memory+5'">
+  <p class="photo-caption">
+    I came into this bond as an electron, always moving around with a thousand thoughts. Somewhere along the way, you helped me become your Proton. And honestly, I like the person I'm becoming. ⚛️💗
+  </p>
+  <div class="counter">05 / 07</div>
+  <button class="next" onclick="goTo(7)">Next memory →</button>
+</section>
+
+<!-- PHOTO 6 -->
+<section class="page" id="page7">
+  <div class="small">Memory 06 · The gratitude</div>
+  <h2>I'm glad it was you.</h2>
+  <img class="photo" src="pic6.jpg" alt="A treasured memory"
+       onerror="this.src='https://placehold.co/400x500/fff0f5/c96e91?text=Our+Memory+6'">
+  <p class="photo-caption">
+    Thank you for being part of my story. You may not even realise how much the little things you do mean to me, but I carry that gratitude with me. Always. 🥹
+  </p>
+  <div class="counter">06 / 07</div>
+  <button class="next" onclick="goTo(8)">One last memory →</button>
+</section>
+
+<!-- PHOTO 7 -->
+<section class="page" id="page8">
+  <div class="small">Memory 07 · Always grateful</div>
+  <h2>One picture, a thousand feelings.</h2>
+  <img class="photo" src="pic7.jpg" alt="One last special memory"
+       onerror="this.src='https://placehold.co/400x500/fff0f5/c96e91?text=Our+Memory+7'">
+  <p class="photo-caption">
+    If I could keep one thing from all these memories, it would be the feeling of being lucky enough to know you. Thank you for being my Dora. 💗
+  </p>
+  <div class="counter">07 / 07</div>
+  <button class="next" onclick="goTo(9)">Read what I really want to say ♡</button>
+</section>
+
+<!-- FINAL LETTER -->
+<section class="page" id="page9">
+  <div class="small">A letter from your Proton</div>
+  <h1>For you, Dora. 💌</h1>
+
+  <div class="letter">
+    <p>Dear Divya,</p>
+
+    <p>
+      I don't think a simple thank-you could ever explain how grateful
+      I am that you entered my life. Still, I want to try.
+    </p>
+
+    <p>
+      Thank you for being you. For the conversations, the laughter,
+      the patience, the little moments, and all the things you might
+      consider ordinary but that mean so much to me.
+    </p>
+
+    <p>
+      You know how I call myself your Proton? It's funny how a tiny
+      nickname can come to mean so much. Somewhere between all our
+      conversations, I changed. Maybe I became a little more open,
+      a little more hopeful, and a little more comfortable being myself.
+      And I'm genuinely thankful for that.
+    </p>
+
+    <p>
+      Thank you for being a safe place in a world that sometimes feels
+      too loud. I hope our friendship is a safe place for you, too —
+      somewhere you never have to pretend you're okay, explain every
+      feeling perfectly, or carry everything alone.
+    </p>
+
+    <p>
+      I know I won't always have the perfect words. Sometimes I'll
+      be clumsy, overthink things, or fail to express what I actually
+      mean. But please never mistake that for a lack of gratitude.
+      You matter to me, Dora. And this friendship matters to me.
+    </p>
+
+    <p>
+      Life will keep changing. Our routines might change, our days
+      might get busier, and we may find ourselves walking different
+      roads. But I'll always be grateful that, for a part of this
+      journey, our roads met.
+    </p>
+
+    <p>
+      I can't promise that every day will be easy, but I can promise
+      to keep wishing good things for you, cheering for you, and
+      reminding you of your worth whenever you need it.
+    </p>
+
+    <p>
+      Thank you for entering my life and leaving it a little softer
+      than you found it. Thank you for being my Dora, my best friend,
+      and one of the people I'll always be thankful for.
+    </p>
+
+    <p>
+      No matter where life takes us, I hope you never forget that
+      somewhere in this big world, there's a Proton who'll always
+      be rooting for his Dora. 💗
+    </p>
+
+    <p>
+      You didn't have to change my world to matter in it.
+      Somehow, you did anyway.
+    </p>
+
+    <p class="signature">
+      Forever thankful for you,<br>
+      Your Proton ⚛️<br>
+      <span style="font-size:22px">♡</span>
+    </p>
+  </div>
+
+  <button class="next" onclick="goTo(10)">One tiny reminder for you 🌷</button>
+</section>
+
+<!-- ENDING -->
+<section class="page" id="page10">
+  <div class="doodle">🧸💗🌷</div>
+  <div class="small">And before you leave...</div>
+  <h1>You're appreciated, Dora.</h1>
+  <p>
+    On your happiest days, on your difficult days,
+    and on the ordinary days in between —
+    I hope life gives you the same warmth you bring into the lives of others.
+  </p>
+  <p style="margin-top:18px">
+    Thank you for being here.<br>
+    Thank you for being you.<br>
+    And thank you for being my friend. 🫶🏻
+  </p>
+  <div class="doodle">Forever your Proton ♡</div>
+  <button class="next" onclick="goTo(0)">Read it all again ↺</button>
+  <div class="footer">MADE FOR DORA WITH ALL MY HEART</div>
+</section>
+
+<script>
+let currentPage = 0;
+
+function goTo(number) {
+  document.getElementById("page" + currentPage)
+    .classList.remove("active");
+
+  currentPage = number;
+
+  document.getElementById("page" + currentPage)
+    .classList.add("active");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+const song = document.getElementById("song");
+const musicBtn = document.getElementById("musicBtn");
+
+async function toggleMusic() {
+  if (song.paused) {
+    try {
+      await song.play();
+      musicBtn.textContent = "♫ Pause our song";
+    } catch (error) {
+      musicBtn.textContent = "Song unavailable — check song.mp3";
+    }
+  } else {
+    song.pause();
+    musicBtn.textContent = "♫ Play our song";
+  }
+}
+
+// Floating hearts
+const hearts = ["♡", "♥", "💗", "୨୧", "✿"];
+
+for (let i = 0; i < 18; i++) {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = hearts[i % hearts.length];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDelay = Math.random() * 8 + "s";
+  heart.style.animationDuration = (6 + Math.random() * 7) + "s";
+  heart.style.fontSize = (14 + Math.random() * 15) + "px";
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
